@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Blog</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        background-color: #1e1e2f;
+        color: #f5f5f5;
+        margin: 0;
+        padding-top: 50px;
+        transition: background-color 1s ease;
+    }
+
+    h1 {
+        color: #f5f5f5;
+    }
+
+    #clock {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+    }
+
+    #btnColor {
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #ff6b6b;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #btnColor:hover {
+        background-color: #e63946;
+        transform: scale(1.05);
+    }
+
+    #decreBtn, #increBtn, #reset {
+        padding: 12px 24px;
+        margin: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    #decreBtn {
+        background-color: #ff4d4d;
+        color: white;
+    }
+
+    #increBtn {
+        background-color: #00b894;
+        color: white;
+    }
+
+    #reset {
+        background-color: #fdcb6e;
+        color: #2d3436;
+    }
+
+    #decreBtn:hover,
+    #increBtn:hover,
+    #reset:hover {
+        transform: scale(1.05);
+    }
+
+    #compteur {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin: 20px 0;
+        color: #81ecec;
+    }
+</style>
+
+</head>
+<body id="body">
+
+    <button id="btnColor">Cliquer pour changer de couleur</button>
+    
+    <div class="list"></div>
+
+    <button id="decreBtn">-</button>
+    <p id="compteur">0</p>
+    <button id="increBtn">+</button>
+    <br>
+    <button id="reset">Reinitialiser</button>
+
+    <script>
+        
+        function genererCouleurHex() {
+            const lettres = "0123456789abcdef";
+            let couleur = "#";
+            for (let i = 0; i < 6; i++) {
+                couleur += lettres[Math.floor(Math.random() * 16)];
+            }
+            return couleur;
+        }
+
+
+        const btnColor = document.getElementById("btnColor");
+        btnColor.addEventListener("click", () => {
+            const couleur = genererCouleurHex();
+            document.body.style.backgroundColor = couleur;
+        });
+
+        let compteur = 0;
+        const compteurAffiche = document.getElementById("compteur");
+        const increBtn = document.getElementById("increBtn");
+        const decreBtn = document.getElementById("decreBtn");
+        const resetBtn = document.getElementById("reset");
+
+        increBtn.addEventListener("click", () => {
+            compteur++;
+            compteurAffiche.textContent = compteur;
+        });
+
+        decreBtn.addEventListener("click", () => {
+            compteur--;
+            compteurAffiche.textContent = compteur;
+        });
+
+        resetBtn.addEventListener("click", () => {
+            compteur = 0;
+            compteurAffiche.textContent = compteur;
+        });
+    </script>
+
+</body>
+</html>
